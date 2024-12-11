@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration</title>
+  </head>
+  <body>
+    <h2>Welcome to Registration!</h2>
+    <form>
+      <div>
+        <label>Name</label>
+        <input type="text" id="name" />
+      </div>
+      <div>
+        <label>DOB</label>
+        <input type="date" id="dob" />
+      </div>
+      <div>
+        <label>Contact</label>
+        <input type="number" id="contact" />
+      </div>
+      <div>
+        <label>Username</label>
+        <input type="text" id="username" />
+      </div>
+      <div>
+        <label>Password</label>
+        <input type="password" id="password" />
+      </div>
+      <button onclick="saveForm()" type="button">Submit</button>
+    </form>
+    <p id="result"></p>
+  </body>
+  <script>
+    function saveForm() {
+      const result = document.getElementById("result");
+      result.innerHTML = "";
+      const name = document.getElementById("name").value;
+      const dob = document.getElementById("dob").value;
+      const contact = document.getElementById("contact").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const formObj = {
+        name: name,
+        dob: dob,
+        contact: contact,
+        username: username,
+        password: password,
+      };
+      localStorage.setItem(name, JSON.stringify(formObj));
+      console.log(name);
+      const userValue = JSON.parse(localStorage.getItem(name));
+      console.log(userValue);
+      result.innerHTML +=
+        "<table><tr><th>Name</th><th>Contact</th><th>Username</th></tr><tr><td>" +
+        userValue.name +
+        "</td><td>" +
+        userValue.contact +
+        "</td><td>" +
+        userValue.username +
+        "</td></tr></table>";
+    }
+  </script>
+</html>
